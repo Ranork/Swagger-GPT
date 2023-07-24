@@ -1,0 +1,25 @@
+{
+  "name": "swagger-gpt",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Swagger explanation maker with chatgpt",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "babel-node src/main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.22.9",
+    "@babel/core": "^7.22.9",
+    "@babel/node": "^7.22.6",
+    "@babel/preset-env": "^7.22.9",
+    "@babel/register": "^7.22.5",
+    "eslint": "^8.45.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1"
+  }
+}
