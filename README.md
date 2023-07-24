@@ -6,6 +6,8 @@ Automatic Swagger Configuration for Node.js API Routes
 
 Welcome to the **Automatic Swagger Configuration** project! This Node.js-based repository aims to simplify the process of generating Swagger documentation for your API routes. Swagger is a powerful tool for describing and visualizing APIs, making it easier for developers to understand and interact with your endpoints.
 
+This project gives you a flatten javascript file and necessery prompts to make a swagger configuration with chat gpt.
+
 ## Table of Contents
 
 - [Getting Started](#getting-started)
