@@ -66,7 +66,11 @@ npm run start
 
 This command will utilize the configurations from the `.env` file, scan your Node.js API project, identify the defined routes, and generate Swagger documentation in JSON format.
 
-5. You can then integrate this generated Swagger JSON with your favorite API documentation tool, such as Swagger UI, to visualize and interact with your API endpoints seamlessly.
+5. Go to docs/ folder and open your files in order
+
+6. Copy all lines and send to chat.openai.com bot
+
+7. There is your swagger configuration!
 
 
 ## Examples
