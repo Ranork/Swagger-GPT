@@ -12,7 +12,12 @@ export default function flatten_file(filepath) {
   let imp_str = []
   let bypass = false
 
-  nfile_str.push('\r//@---- File: ' + filepath.split('/')[filepath.split('/').length - 1] + '\r')
+  let filename = filepath.split('/')[filepath.split('/').length - 1]
+  if (filename.includes('\\')) filename = filepath.split('\\')[filepath.split('\\').length - 1]
+
+  if (process.env.skip_files.split('|').includes(filename)) return []
+
+  nfile_str.push('\r//@---- File: ' + filename + '\r')
 
   for (let line of file_str.split('\r')) {
     line = line.replaceAll('//*', '//')
@@ -42,7 +47,22 @@ export default function flatten_file(filepath) {
 
     let import_path = path.join(process.env.target_path + '/', inner_path)
 
-    let ifile_str = flatten_file(import_path)
+    try {
+      let i_filename = import_path.split('/')[import_path.split('/').length - 1]
+      if (i_filename.includes('\\')) i_filename = import_path.split('\\')[import_path.split('\\').length - 1]
+      if (process.env.skip_files.split('|').includes(i_filename)) continue
+
+      var ifile_str = flatten_file(import_path)
+    }
+    catch (e) {
+      console.error(
+        e.message + '\n' +
+        'Parent File: ' + filename + '\n' +
+        'Inner Path: ' + inner_path + '\n' +
+        'Import Path: ' + import_path + '\n'
+      );
+      continue
+    }
     nfile_str = [...nfile_str, ...ifile_str]
   }
 

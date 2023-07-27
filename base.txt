@@ -1,12 +1,13 @@
-// Create a swagger description for the route file given at the top, considering the following files
-// Create this specification to be added with @swagger inside the route javascript file
-// Create a tag that defines the route and add it to it
-// Show only rows to be added as attachments
-// Pay attention to the details of the body parameters
-// Make Language: Turkish
-// 
-// 
-// Example:
+Request:
+
+Create a swagger description for the route file given at the top, considering the following files
+Create this specification to be added with @swagger inside the route javascript file
+Create a tag that defines the route and add it to it
+Show only rows to be added as attachments
+Make Language: Turkish
+
+
+Example:
 
 /**
  * @swagger
@@ -41,3 +42,5 @@
  *   name: Auth
  *   description: Kullanıcı girişi ve çıkışı için API yönlendirmesi
 */
+
+Files:

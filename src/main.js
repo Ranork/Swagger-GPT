@@ -1,8 +1,9 @@
 import flatten_file from "./flattenfiles.js";
 import get_files from "./getfiles.js";
 import fs from 'fs'
+import * as dotenv from 'dotenv'
 
-
+dotenv.config({override: true})
 
 async function run() {
   let basetext = fs.readFileSync('base.txt').toString()
@@ -13,7 +14,7 @@ async function run() {
   for (let f of files) {
     let ffile = flatten_file(process.env.target_path + '/' + f)
     
-    fs.writeFileSync('docs/' + f , basetext + ffile.join('\r'))
+    fs.writeFileSync('docs/' + f + '.txt', basetext + ffile.join('\r'))
   }
 
   console.log('Documents ready to use!');
