@@ -3,6 +3,7 @@ Request:
 Create a swagger description for the route file given at the top, considering the following files
 Create this specification to be added with @swagger inside the route javascript file
 Create a tag that defines the route and add it to it
+If a parameter is enum write it as enum
 Show only rows to be added as attachments
 Make Language: Turkish
 
@@ -11,36 +12,82 @@ Example:
 
 /**
  * @swagger
- * /login:
- *   delete:
- *     summary: Kullanıcı Çıkışı
- *     description: Kullanıcıyı çıkış yapar ve tokenı geçersiz kılar.
- *     tags: [Auth]
+ * tags:
+ *   name: Fatura
+ *   description: Fatura işlemleri
+ * 
+ * /fatura:
+ *   get:
+ *     summary: Fatura Getirme
+ *     description: Belirli bir fatura numarasına veya filtrelemeye göre faturaları getirir.
+ *     tags: [Fatura]
  *     parameters:
- *       - name: Token
- *         in: header
+ *       - name: TIP
+ *         in: query
  *         required: true
  *         schema:
  *           type: string
- *         description: Kullanıcı tokenı.
+ *           enum: [FATURA, SIPARIS, IADE]
+ *         description: Fatura tipi.
+ *       - name: FATURA_NO
+ *         in: query
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Fatura numarası.
  *     responses:
  *       '200':
- *         description: Çıkış başarılı.
+ *         description: Fatura başarıyla getirildi.
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 Success:
- *                   type: boolean
- *                   example: true
-*/
+ *               $ref: '#/components/schemas/Fatura'
+ *
+ *   post:
+ *     summary: Fatura Oluşturma
+ *     description: Yeni bir fatura oluşturur.
+ *     tags: [Fatura]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/CreateFatura'
+ *     responses:
+ *       '200':
+ *         description: Fatura başarıyla oluşturuldu.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Fatura'
+ *
+ * components:
+ *   schemas:
+ *     Fatura:
+ *       type: object
+ *       properties:
+ *         TIP:
+ *           type: string
+ *           enum: [FATURA, SIPARIS, IADE]
+ *           example: FATURA
+ *           description: Fatura tipi.
+ *         SUBE_KODU:
+ *           type: number
+ *           example: 1
+ *           description: Şube kodu.
+ *         FATURA_NO:
+ *           type: string
+ *           example: 20210001
+ *           description: Fatura numarası.
+ *         PREFIX:
+ *           type: string
+ *           example: 2021
+ *           description: Fatura numarası öneki.
+ *         CARI_KOD:
+ *           type: string
+ *           example: C001
+ *           description: Cari kodu.
+ */
 
-/**
- * @swagger
- * tags:
- *   name: Auth
- *   description: Kullanıcı girişi ve çıkışı için API yönlendirmesi
-*/
 
 Files:
